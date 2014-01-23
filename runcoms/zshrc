@@ -12,3 +12,11 @@ fi
 
 # Customize to your needs...
 
+# . /usr/share/zsh/site-contrib/powerline.zsh
+
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export LC_ALL=en_US.UTF-8
+
+export PYCHARM_JDK=/opt/java7/bin/java
