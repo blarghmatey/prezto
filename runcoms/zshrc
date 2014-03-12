@@ -12,11 +12,21 @@ fi
 
 # Customize to your needs...
 
-# . /usr/share/zsh/site-contrib/powerline.zsh
-
+source ~/.homesick/repos/homeshick/homeshick.sh
+source /usr/bin/tmuxp.zsh
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export TERM=xterm-256color
 
 export LC_ALL=en_US.UTF-8
 
 export PYCHARM_JDK=/opt/java7/bin/java
+
+# Alias mappings
+#
+alias pgstart="sudo systemctl start postgresql"
+alias pgstop="sudo systemctl stop postgresql"
+#alias tmux="tmux -2"
+#
+set -o vi
