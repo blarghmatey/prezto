@@ -14,9 +14,15 @@ fi
 
 # . /usr/share/zsh/site-contrib/powerline.zsh
 
-
+source ~/.homesick/repos/homeshick/homeshick.sh
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export LC_ALL=en_US.UTF-8
 
 export PYCHARM_JDK=/opt/java7/bin/java
+
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+
+# Alias mappings
+
+alias tmux='tmux -2'
