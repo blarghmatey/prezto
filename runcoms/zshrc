@@ -27,6 +27,13 @@ export PYCHARM_JDK=/opt/java7/bin/java
 #
 alias pgstart="sudo systemctl start postgresql"
 alias pgstop="sudo systemctl stop postgresql"
+alias bc="bc -l"
 #alias tmux="tmux -2"
 #
-set -o vi
+
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+syspip(){
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
