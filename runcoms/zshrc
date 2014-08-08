@@ -28,9 +28,13 @@ export PYCHARM_JDK=/opt/java7/bin/java
 alias pgstart="sudo systemctl start postgresql"
 alias pgstop="sudo systemctl stop postgresql"
 alias bc="bc -l"
+alias homevpn="pushd ~/vpn_config/homevpn; sudo openvpn tmacey_asus.conf; popd"
+
 #alias tmux="tmux -2"
 #
 
+. /usr/bin/virtualenvwrapper.sh
+#. ~/.zprezto/modules/zaw/zaw.zsh
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 
