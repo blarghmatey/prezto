@@ -37,3 +37,12 @@ export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 syspip(){
    PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
+
+pomo(){
+work=${1:-25}
+breaktime=${2:-5}
+at now +$work minutes <<EOF
+    notify-send -t $(($breaktime*600)) "<b style='font-size:60px;color:#FF0000;'>BREAK!</b><br>`date`"
+EOF
+}
+
