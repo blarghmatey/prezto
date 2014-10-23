@@ -49,4 +49,3 @@ at now +$work minutes <<EOF
     notify-send -t $(($breaktime*600)) "<b style='font-size:60px;color:#FF0000;'>BREAK!</b><br>`date`"
 EOF
 }
-
