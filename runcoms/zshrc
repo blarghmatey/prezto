@@ -15,8 +15,6 @@ fi
 source ~/.homesick/repos/homeshick/homeshick.sh
 source /usr/bin/tmuxp.zsh
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 export TERM=xterm-256color
 
 export LC_ALL=en_US.UTF-8
@@ -49,3 +47,6 @@ at now +$work minutes <<EOF
     notify-send -t $(($breaktime*600)) "<b style='font-size:60px;color:#FF0000;'>BREAK!</b><br>`date`"
 EOF
 }
+
+source /usr/share/chruby/chruby.sh
+source /usr/share/chruby/auto.sh

@@ -4,6 +4,27 @@ pmodload 'helper'
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
 
+# Set the prompt character depending on repository type
+function prompt_char {
+    git branch >/dev/null 2>/dev/null && echo '±' && return
+    hg root >/dev/null 2>/dev/null && echo '☿' && return
+}
+
+function virtual_env {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        echo "`echo $VIRTUAL_ENV | awk '{n=split($0,v,\"/\"); print v[n]}'`"
+    fi
+}
+
+function python_version {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        echo "`python -c "import sys; print('.'.join(map(str, sys.version_info[:3])));"`"
+    fi
+}
+
+function hg_prompt {
+    hg prompt "{{branch}}{/{bookmark}} {status}" 2> /dev/null
+}
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -33,10 +54,19 @@ prompt_end() {
 }
 
 function build_prompt {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+      prompt_segment default white '(%F{red}$(virtual_env)%F{white}-%F{green}$(python_version)%F{white})'
+  fi
+  # if [ $(chruby) != "system" ]; then
+  #     prompt_segment default red '`rvm current`'
+  # fi
   prompt_segment black default '%(1?;%{%F{red}%}✘ ;)%(!;%{%F{yellow}%}⚡ ;)%(1j;%{%F{cyan}%}%j⚙ ;)%{%F{blue}%}%n%{%F{red}%}@%{%F{green}%}%M'
   prompt_segment blue black '%2~'
   if $git_status; then
     prompt_segment green black '${(e)git_info[prompt]}${git_info[status]}'
+  fi
+  if [[ -n `hg root 2> /dev/null` ]]; then
+      prompt_segment green black '$(hg_prompt)'
   fi
   prompt_end
 }
@@ -113,7 +143,7 @@ function prompt_paradox_setup {
   # Define prompts.
   PROMPT='
 %{%f%b%k%}$(build_prompt) 
- ${editor_info[keymap]} '
+ $(prompt_char) ${editor_info[keymap]} '
   RPROMPT='[%D{%L:%M:%S %p}]'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
