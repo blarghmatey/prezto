@@ -34,13 +34,13 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'prompt' \
   'pacman' \
-  'python' \
   'ruby' \
   'git' \
   'ssh' \
   'node' \
   'syntax-highlighting' \
   'history-substring-search' \
+  #'python' \
   'prompt'
 
 #
