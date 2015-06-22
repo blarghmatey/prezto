@@ -26,32 +26,30 @@ alias pgstart="sudo systemctl start postgresql"
 alias pgstop="sudo systemctl stop postgresql"
 alias bc="bc -l"
 alias homevpn="pushd ~/vpn_config/homevpn; sudo openvpn tmacey_asus.conf; popd"
-alias emacsclient="emacsclient -c --socket-name /tmp/emacs1000/server"
+alias emacsclient="emacsclient -c"
+alias emacs-shutdown="emacsclient -e '(kill-emacs)'"
 #alias tmux="tmux -2"
 #
 
-. /usr/bin/virtualenvwrapper.sh
+#. /usr/bin/virtualenvwrapper.sh
 #. ~/.zprezto/modules/zaw/zaw.zsh
 export PIP_REQUIRE_VIRTUALENV=true
-export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 
 syspip(){
    PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
 
-pomo(){
-work=${1:-25}
-breaktime=${2:-5}
-at now +$work minutes <<EOF
-    notify-send -t $(($breaktime*600)) "<b style='font-size:60px;color:#FF0000;'>BREAK!</b><br>`date`"
-EOF
+syspip2(){
+   PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
 }
 
 source /usr/share/chruby/chruby.sh
 source /usr/share/chruby/auto.sh
+
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 pyenv virtualenvwrapper_lazy
+source /usr/share/nvm/init-nvm.sh
