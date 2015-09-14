@@ -16,10 +16,10 @@
 zstyle ':prezto:*:*' color 'yes'
 
 # Set the Zsh modules to load (man zshmodules).
-# zstyle ':prezto:load' zmodule 'attr' 'stat'
+zstyle ':prezto:load' zmodule 'attr' 'stat'
 
 # Set the Zsh functions to load (man zshcontrib).
-# zstyle ':prezto:load' zfunction 'zargs' 'zmv'
+zstyle ':prezto:load' zfunction 'zargs' 'zmv'
 
 # Set the Prezto modules to load (browse modules).
 # The order matters.
@@ -41,7 +41,6 @@ zstyle ':prezto:load' pmodule \
   'syntax-highlighting' \
   'history-substring-search' \
   #'python' \
-  'prompt'
 
 #
 # Editor
@@ -101,7 +100,7 @@ zstyle ':prezto:module:prompt' theme 'blarghmatey'
 #
 
 # Auto switch the Ruby version on directory change.
-# zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
 
 #
 # Screen
@@ -118,7 +117,7 @@ zstyle ':prezto:module:prompt' theme 'blarghmatey'
 #
 
 # Set the SSH identities to load into the agent.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa_hapyak'
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa_hapyak' 'id_rsa_bitlancer' 'id_rsa_hapyak_opsadmin'
 
 #
 # Syntax Highlighting
@@ -137,7 +136,7 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 zstyle ':prezto:module:syntax-highlighting' styles \
   'builtin' 'bg=blue' \
   'command' 'bg=blue' \
-  'function' 'bg=blue'
+  'function' 'bg=green'
 
 #
 # Terminal

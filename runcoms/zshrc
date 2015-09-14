@@ -16,6 +16,9 @@ source ~/.homesick/repos/homeshick/homeshick.sh
 source /usr/bin/tmuxp.zsh
 
 export TERM=xterm-256color
+export EDITOR='/usr/local/bin/emacsclient -c --socket-name /tmp/emacs1000/server -t -a emacs'
+export VISUAL='/usr/local/bin/emacsclient -c --socket-name /tmp/emacs1000/server -a emacs'
+export PAGER='less'
 
 export LC_ALL=en_US.UTF-8
 
@@ -26,8 +29,11 @@ alias pgstart="sudo systemctl start postgresql"
 alias pgstop="sudo systemctl stop postgresql"
 alias bc="bc -l"
 alias homevpn="pushd ~/vpn_config/homevpn; sudo openvpn tmacey_asus.conf; popd"
-alias emacsclient="emacsclient -c"
-alias emacs-shutdown="emacsclient -e '(kill-emacs)'"
+alias emacsclient="/usr/local/bin/emacsclient -c --socket-name /tmp/emacs1000/server"
+alias emacsclient-maximized="emacsclient -F '((fullscreen . maximized))' &"
+alias emacs-shutdown="/usr/local/bin/emacsclient -e '(kill-emacs)'"
+alias wmsystemtray="wmsystemtray --bgcolor white --non-wmaker &"
+alias pip-home="pip show $1 | grep Home-page | awk '{split(/bin/zsh, a); print(a[2])}' | xargs xdg-open"
 #alias tmux="tmux -2"
 #
 
@@ -53,3 +59,11 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 pyenv virtualenvwrapper_lazy
 source /usr/share/nvm/init-nvm.sh
+
+_direnv_hook() {
+  eval "$(direnv export zsh)";
+}
+typeset -ag precmd_functions
+if [[ -z $precmd_functions[(r)_direnv_hook]  ]]; then
+  precmd_functions+=_direnv_hook;
+fi

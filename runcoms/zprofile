@@ -17,8 +17,8 @@ fi
 # Editors
 #
 
-export EDITOR='emacsclient -t -a emacs'
-export VISUAL='emacsclient -a emacs'
+export EDITOR='/usr/local/bin/emacsclient -c --socket-name /tmp/emacs1000/server -t -a emacs'
+export VISUAL='/usr/local/bin/emacsclient -c --socket-name /tmp/emacs1000/server -a emacs'
 export PAGER='less'
 
 #
