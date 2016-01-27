@@ -16,8 +16,8 @@ source ~/.homesick/repos/homeshick/homeshick.sh
 source /usr/bin/tmuxp.zsh
 
 export TERM=xterm-256color
-export EDITOR='/usr/local/bin/emacsclient -c --socket-name /tmp/emacs1000/server -t -a emacs'
-export VISUAL='/usr/local/bin/emacsclient -c --socket-name /tmp/emacs1000/server -a emacs'
+export EDITOR='/usr/local/bin/emacsclient -c -t -a emacs'
+export VISUAL='/usr/local/bin/emacsclient -c -a emacs'
 export PAGER='less'
 
 export LC_ALL=en_US.UTF-8
@@ -29,7 +29,7 @@ alias pgstart="sudo systemctl start postgresql"
 alias pgstop="sudo systemctl stop postgresql"
 alias bc="bc -l"
 alias homevpn="pushd ~/vpn_config/homevpn; sudo openvpn tmacey_asus.conf; popd"
-alias emacsclient="/usr/local/bin/emacsclient -c --socket-name /tmp/emacs1000/server"
+alias emacsclient="/usr/local/bin/emacsclient -c"
 alias emacsclient-maximized="emacsclient -F '((fullscreen . maximized))' &"
 alias emacs-shutdown="/usr/local/bin/emacsclient -e '(kill-emacs)'"
 alias wmsystemtray="wmsystemtray --bgcolor white --non-wmaker &"
@@ -37,28 +37,28 @@ alias pip-home="pip show $1 | grep Home-page | awk '{split(/bin/zsh, a); print(a
 #alias tmux="tmux -2"
 #
 
-#. /usr/bin/virtualenvwrapper.sh
+. /usr/bin/virtualenvwrapper.sh
 #. ~/.zprezto/modules/zaw/zaw.zsh
-export PIP_REQUIRE_VIRTUALENV=true
+# export PIP_REQUIRE_VIRTUALENV=true
 
-syspip(){
-   PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
+#syspip(){
+   #PIP_REQUIRE_VIRTUALENV="" pip "$@"
+#}
 
-syspip2(){
-   PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
-}
+#syspip2(){
+   #PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
+#}
 
 source /usr/share/chruby/chruby.sh
 source /usr/share/chruby/auto.sh
 
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-pyenv virtualenvwrapper_lazy
-source /usr/share/nvm/init-nvm.sh
+for dir in $(ls ~/.pythonz/pythons/)
+do
+PATH=$PATH:~/.pythonz/pythons/$dir/bin
+done
+export PATH
 
 _direnv_hook() {
   eval "$(direnv export zsh)";
